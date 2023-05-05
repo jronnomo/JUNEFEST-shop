@@ -10,7 +10,7 @@ const ProductScreen = () => {
 
   return (
     <>
-      <Link className="btn btn-light my-3" to="/">
+      <Link className='btn btn-light my-3' to='/'>
         Go Back
       </Link>
       <Row>
@@ -18,7 +18,7 @@ const ProductScreen = () => {
           <Image src={product.image} alt={product.name} fluid />
         </Col>
         <Col md={4}>
-          <ListGroup variant="flush">
+          <ListGroup variant='flush'>
             <ListGroup.Item>
               <h3>{product.name}</h3>
             </ListGroup.Item>
@@ -31,7 +31,7 @@ const ProductScreen = () => {
         </Col>
         <Col md={3}>
           <Card>
-            <ListGroup variant="flush">
+            <ListGroup variant='flush'>
               <ListGroup.Item>
                 <Row>
                   <Col>Price:</Col>
@@ -49,7 +49,7 @@ const ProductScreen = () => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Button className="btn-block" type="button" disabled={product.countInStock === 0}>
+                <Button className='btn-block' type='button' disabled={product.countInStock === 0}>
                   Add To Cart
                 </Button>
               </ListGroup.Item>
