@@ -1,4 +1,5 @@
 import { PRODUCTS_URL } from '../constants';
+//use apiSlice because we're dealing with endpoints that are dealing with async requests
 import { apiSlice } from './apiSlice';
 
 //injects endpoints into the main apiSlice
