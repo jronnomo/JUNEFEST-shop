@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const userSchema = new mongoose.Schema(
   {
@@ -25,6 +26,11 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+// using brcypt to match entered password in GUI to the encrypted password stored in Mongo
+userSchema.methods.matchPassword = async function (enteredPassword){
+  return await bcrypt.compare(enteredPassword, this.password)
+}
 
 const User = mongoose.model('User', userSchema);
 export default User;
