@@ -1,8 +1,10 @@
+//for server stored info
+
 import { USERS_URL } from '../constants';
 //use apiSlice because we're dealing with endpoints that are dealing with async requests
 import { apiSlice } from './apiSlice';
 
-//injects endpoint into the main apiSlice
+//injects endpoints into the main apiSlice
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
@@ -12,7 +14,20 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    logout: builder.mutation({
+      query: () => ({
+        url: `${USERS_URL}/logout`,
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = usersApiSlice;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = usersApiSlice;
