@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 //Router packages
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 
 //View Components
 import App from './App';
@@ -32,7 +33,11 @@ const router = createBrowserRouter(
       <Route path='/cart' element={<CartScreen />} />
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/register' element={<RegisterScreen />} />
-      <Route path='/shipping' element={<ShippingScreen />} />
+
+      {/* No one should be able to access private routes without being logged in */}
+      <Route path='' element={<PrivateRoute />}>
+        <Route path='/shipping' element={<ShippingScreen />} />
+      </Route>
     </Route>
   )
 );
