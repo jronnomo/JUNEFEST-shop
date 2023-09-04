@@ -15,6 +15,7 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
 
 //Redux Components
 import { Provider } from 'react-redux';
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
       {/* No one should be able to access private routes without being logged in */}
       <Route path='' element={<PrivateRoute />}>
         <Route path='/shipping' element={<ShippingScreen />} />
+        <Route path='/payment' element={<PaymentScreen />} />
       </Route>
     </Route>
   )
