@@ -7,6 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 
+//Paypal components
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+
 //View Components
 import App from './App';
 import HomeScreen from './screens/HomeScreen';
@@ -52,7 +55,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PayPalScriptProvider deferLoading={true}>
+        <RouterProvider router={router} />
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>
 );
