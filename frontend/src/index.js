@@ -24,6 +24,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OrderListScreen from './screens/Admin/OrderListScreen';
+import ProductListScreen from './screens/Admin/ProductListScreen';
 
 //Redux Components
 import { Provider } from 'react-redux';
@@ -55,6 +56,7 @@ const router = createBrowserRouter(
       {/* No one should be able to access admin routes without being an admin */}
       <Route path='' element={<AdminRoute />}>
         <Route path='/admin/orderlist' element={<OrderListScreen />} />
+        <Route path='/admin/productlist' element={<ProductListScreen />} />
       </Route>
     </Route>
   )
