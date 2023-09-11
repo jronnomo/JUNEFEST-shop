@@ -36,7 +36,7 @@ const UserEditScreen = () => {
         name,
         email,
         isAdmin,
-      }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
+      });
       toast.success('User updated');
       refetch();
       navigate('/admin/userlist');
