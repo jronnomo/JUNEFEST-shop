@@ -25,8 +25,12 @@ function checkFileType(file, cb) {
 
 const upload = multer({
   storage,
+  checkFileType,
 });
 
+//@desc Upload a product image
+//@route POST /api/upload
+//@access Private/Admin
 router.post('/', upload.single('image'), (req, res) => {
   res.send({ message: 'Image uploaded', image: `/${req.file.path}` });
 });
