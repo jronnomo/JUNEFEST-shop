@@ -23,7 +23,7 @@ const ProductScreen = () => {
   const [comment, setComment] = useState('');
 
   const { data: product, isLoading, error, refetch } = useGetProductDetailsQuery(productId);
-  const [createReview, { isLoading: loadProductReview }] = useCreateProductReviewMutation();
+  const [createProductReview, { isLoading: loadProductReview }] = useCreateProductReviewMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -32,6 +32,25 @@ const ProductScreen = () => {
     dispatch(addToCart({ ...product, qty }));
     navigate('/cart');
   };
+
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    try {
+      console.log(productId, rating, comment)
+      await createProductReview({
+        productId,
+        rating,
+        comment
+      }).unwrap()
+      refetch()
+      toast.success("Review submitted!")
+      setRating(0)
+      setComment("")
+    }
+    catch (error){
+      toast.error(error?.data?.message || error.error)
+    }
+  }
 
   //Axios
   // const [product, setProduct] = useState({});
@@ -126,19 +145,19 @@ const ProductScreen = () => {
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No reviews</Message>}
               <ListGroup variant='flush'>
-                {product.reviews.map((review) => {
-                  <ListGroup.Item key={review._id}>
+                {product.reviews.map((review) => 
+                  (<ListGroup.Item key={review._id}>
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
-                  </ListGroup.Item>;
-                })}
+                  </ListGroup.Item>)
+                )}
                 <ListGroup.Item>
                   <h2>Write a Customer Review</h2>
                   {loadProductReview && <Loader />}
                   {userInfo ? (
-                    <Form>
+                    <Form onSubmit={submitHandler}>
                       <Form.Group controlId='rating' className='my-2'>
                         <Form.Label>Rating</Form.Label>
                         <Form.Control as='select' value={rating} onChange={(e) => setRating(Number(e.target.value))}>
