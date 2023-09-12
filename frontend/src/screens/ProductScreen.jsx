@@ -7,7 +7,7 @@ import Rating from '../components/Rating';
 import { useGetProductDetailsQuery, useCreateProductReviewMutation } from '../slices/productsApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify';
 
 //Axios -- now replaced with Redux slices
 // import axios from 'axios';
@@ -19,13 +19,13 @@ const ProductScreen = () => {
 
   const { id: productId } = useParams();
   const [qty, setQty] = useState(1);
-const [rating, setRating] = useState(0)
-const [comment, setComment] = useState('')
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
   const { data: product, isLoading, error, refetch } = useGetProductDetailsQuery(productId);
-  const [createReview, {isLoading: loadProductReview},] = useCreateProductReviewMutation()
+  const [createReview, { isLoading: loadProductReview }] = useCreateProductReviewMutation();
 
-  const {userInfo} = useSelector((state) => state.auth)
+  const { userInfo } = useSelector((state) => state.auth);
 
   //calling Redux addToCart action
   const addToCartHandler = () => {
@@ -124,24 +124,24 @@ const [comment, setComment] = useState('')
           <Row className='review'>
             <Col md={6}>
               <h2>Reviews</h2>
-              {product.reviews.length === 0 && (<Message>No reviews</Message>)}
+              {product.reviews.length === 0 && <Message>No reviews</Message>}
               <ListGroup variant='flush'>
                 {product.reviews.map((review) => {
                   <ListGroup.Item key={review._id}>
                     <strong>{review.name}</strong>
-                    <Rating value={review.rating}/>
+                    <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
-                  </ListGroup.Item>
+                  </ListGroup.Item>;
                 })}
                 <ListGroup.Item>
                   <h2>Write a Customer Review</h2>
-                  {loadProductReview && <Loader/>}
+                  {loadProductReview && <Loader />}
                   {userInfo ? (
                     <Form>
                       <Form.Group controlId='rating' className='my-2'>
                         <Form.Label>Rating</Form.Label>
-                        <Form.Control as='select' value={rating} onChange={(e)=> setRating(Number(e.target.value))}>
+                        <Form.Control as='select' value={rating} onChange={(e) => setRating(Number(e.target.value))}>
                           <option value=''>Select...</option>
                           <option value='1'>1 - Poor</option>
                           <option value='2'>2 - Fair</option>
@@ -152,11 +152,22 @@ const [comment, setComment] = useState('')
                       </Form.Group>
                       <Form.Group controlId='comment' className='my-2'>
                         <Form.Label>Comment</Form.Label>
-                        <Form.Control as='textarea' row='3' value={comment} onChange={(e) => setComment(e.target.value)}/>
+                        <Form.Control
+                          as='textarea'
+                          row='3'
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                        />
                       </Form.Group>
-                      <Button disabled={loadProductReview} type='submit' variant='primary'>Submit</Button>
+                      <Button disabled={loadProductReview} type='submit' variant='primary'>
+                        Submit
+                      </Button>
                     </Form>
-                  ) : (<Message>Please <Link to='/login'>sign in</Link> to write a review{' '}</Message>)}
+                  ) : (
+                    <Message>
+                      Please <Link to='/login'>sign in</Link> to write a review{' '}
+                    </Message>
+                  )}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
