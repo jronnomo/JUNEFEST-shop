@@ -1,5 +1,8 @@
+//TODO remove cart items and user address from localstorage when new user logs in
+//TODO admin able to mark anyone's payment as "paid" without on site payment
+
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 //useDispath - used to dispatch actions (like logging in the the usersApiSlice)
 //useSelector - used to get stuff from the state such as the user
