@@ -37,9 +37,21 @@ const cartSlice = createSlice({
       state.cartItems = [];
       return updateCart(state);
     },
+    resetCart: (state) => {
+      // Reset the cart to its initial state
+      state.cartItems = [];
+      state.shippingAddress = {};
+      state.paymentMethod = 'Paypal';
+
+      // Update localStorage to reflect the initial state
+      localStorage.setItem('cart', JSON.stringify(initialState));
+
+      return state; // Return the modified state
+    },
   },
 });
 
-export const { addToCart, removeFromCart, saveShippingAddress, savePaymentMethod, clearCartItems } = cartSlice.actions;
+export const { addToCart, removeFromCart, saveShippingAddress, savePaymentMethod, clearCartItems, resetCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
