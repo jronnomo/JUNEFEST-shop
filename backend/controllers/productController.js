@@ -5,8 +5,16 @@ import asyncHandler from '../middleware/asyncHandler.js';
 //@route GET /api/products
 //@access Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({});
-  res.json(products);
+  const pageSize = 4;
+  //req.query.name to get info from url
+  const page = Number(req.query.pageNumber) || 1;
+
+  const keyword = req.query.keyword ? { name: { $regex: req.query.keyword, $options: 'i' } } : {};
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 //@desc Fetch a product
