@@ -38,7 +38,7 @@ const OrderListScreen = () => {
                 <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : <FaTimes style={{ color: 'red' }} />}</td>
                 <td>
                   <LinkContainer to={`/orders/${order._id}`}>
-                    <Button variant='light' className='btn-sm'>
+                    <Button variant='primary' className='btn-sm salmon-button'>
                       Details
                     </Button>
                   </LinkContainer>

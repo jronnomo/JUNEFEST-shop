@@ -154,7 +154,7 @@ const ProductEditScreen = () => {
                 onChange={(e) => setCountInStock(e.target.value)}
               />
             </Form.Group>
-            <Button type='submit' variant='primary' className='my-2'>
+            <Button type='submit' variant='salmon' className='my-2 salmon-button'>
               Update
             </Button>
           </Form>

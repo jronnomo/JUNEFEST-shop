@@ -128,7 +128,7 @@ const ProductScreen = () => {
 
                   <ListGroup.Item>
                     <Button
-                      className='btn-block'
+                      className='btn-block salmon-button'
                       type='button'
                       disabled={product.countInStock === 0}
                       onClick={addToCartHandler}>
@@ -177,7 +177,7 @@ const ProductScreen = () => {
                           onChange={(e) => setComment(e.target.value)}
                         />
                       </Form.Group>
-                      <Button disabled={loadProductReview} type='submit' variant='primary'>
+                      <Button disabled={loadProductReview} type='submit' variant='salmon' className='salmon-button'>
                         Submit
                       </Button>
                     </Form>

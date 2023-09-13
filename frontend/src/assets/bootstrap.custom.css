@@ -4084,6 +4084,14 @@ fieldset:disabled .btn {
   border-radius: var(--bs-navbar-toggler-border-radius);
   transition: var(--bs-navbar-toggler-transition);
 }
+
+/* Custom CSS */
+.salmon-button {
+  background-color: var(--junefest-salmon);
+  border-color: var(--junefest-salmon);
+  color: white; /* You can adjust the text color as needed */
+}
+
 @media (prefers-reduced-motion: reduce) {
   .navbar-toggler {
     transition: none;

@@ -182,9 +182,9 @@ const OrderScreen = () => {
                   ) : (
                     <div>
                       {/* Test button only needed for Development */}
-                      {/* <Button onClick={onApproveTest} style={{ marginBottom: '10px' }}>
+                      <Button onClick={onApproveTest} style={{ marginBottom: '10px' }} className='salmon-button'>
                         Test Pay Order
-                      </Button> */}
+                      </Button>
                       <div>
                         <PayPalButtons
                           createOrder={createOrder}
@@ -200,7 +200,7 @@ const OrderScreen = () => {
 
               {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                 <ListGroup.Item>
-                  <Button type='button' className='btn btn-block' onClick={deliverOrderHandler}>
+                  <Button type='button' className='btn btn-block salmon-button' onClick={deliverOrderHandler}>
                     Mark as delivered
                   </Button>
                 </ListGroup.Item>

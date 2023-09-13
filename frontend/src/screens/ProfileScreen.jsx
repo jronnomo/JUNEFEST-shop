@@ -80,7 +80,7 @@ const ProfileScreen = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
           </Form.Group>
-          <Button type='submit' variant='primary' className='my-2'>
+          <Button type='submit' variant='primary' className='my-2 salmon-button'>
             Update
           </Button>
           {loadingUpdateProfile && <Loader />}
