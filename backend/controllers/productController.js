@@ -14,7 +14,7 @@ const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
-  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  res.status(200).json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 //@desc Fetch a product
@@ -24,7 +24,7 @@ const getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (product) {
-    return res.json(product);
+    return res.status(200).json(product);
   } else {
     res.status(404);
     throw new Error('Resource not found');
@@ -124,4 +124,20 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
-export { getProductById, getProducts, createProduct, updateProduct, deleteProduct, createProductReview };
+//@desc Get top rated products
+//@route GET /api/products/top
+//@access Public
+const getTopProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3);
+  return res.status(200).json(products);
+});
+
+export {
+  getProductById,
+  getProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  createProductReview,
+  getTopProducts,
+};
