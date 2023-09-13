@@ -12,20 +12,23 @@ const storage = multer.diskStorage({
   },
 });
 
-function checkFileType(file, cb) {
-  const filetypes = /jpg|jpeg|png/;
+function fileFilter(req, file, cb) {
+  const filetypes = /jpe?g|png|webp/;
+  const mimetypes = /image\/jpe?g|image\/png|image\/webp/;
+
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetypes = filetypes.test(file.mimetypes);
-  if (extname && mimetypes) {
-    return cb(null, true);
+  const mimetype = mimetypes.test(file.mimetype);
+
+  if (extname && mimetype) {
+    cb(null, true);
   } else {
-    cb('Images only');
+    cb(new Error('Images only!'), false);
   }
 }
 
 const upload = multer({
   storage,
-  checkFileType,
+  fileFilter,
 });
 
 //@desc Upload a product image

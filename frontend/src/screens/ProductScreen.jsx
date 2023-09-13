@@ -8,6 +8,7 @@ import { useGetProductDetailsQuery, useCreateProductReviewMutation } from '../sl
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../slices/cartSlice';
 import { toast } from 'react-toastify';
+import Meta from '../components/Meta';
 
 //Axios -- now replaced with Redux slices
 // import axios from 'axios';
@@ -73,6 +74,7 @@ const ProductScreen = () => {
         <Message variant='danger'>{error?.data?.message || error.error}</Message>
       ) : (
         <>
+          <Meta title={product.name}></Meta>
           <Row>
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
