@@ -1,4 +1,3 @@
-//TODO remove cart items and user address from localstorage when new user logs in
 //TODO admin able to mark anyone's payment as "paid" without on site payment
 //TODO update all button variants to something suitable
 
